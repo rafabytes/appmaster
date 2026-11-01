@@ -1,0 +1,216 @@
+{
+    "version": 1,
+    "site": {
+        "blogname": "appMaster",
+        "blogdescription": "gerado por IA, feito por gente"
+    },
+    "front_page": "home",
+    "options": {
+        "field_am_brand_name": "appMaster",
+        "field_am_prompt_user": "visitante",
+        "field_am_github_profile": "https://github.com/rafabytes",
+        "field_am_contact_email": "",
+        "field_am_footer_text": "Laboratório de código livre e sem fins lucrativos. Gerado por IA, feito por gente.",
+        "field_am_footer_credit": {
+            "title": "desenvolvido por @rafabytes",
+            "url": "https://rafabytes.com",
+            "target": "_blank"
+        },
+        "field_am_login_title": "acesso restrito",
+        "field_am_login_message": "Área administrativa do appMaster.",
+        "field_am_meta_description": "appMaster: gerado por IA, feito por gente. Laboratório sem fins lucrativos que cria ferramentas de código livre para usar direto no navegador.",
+        "field_am_og_image": "",
+        "field_am_organization_name": "appMaster",
+        "field_am_notfound_message": "Esse caminho não existe (ou mudou de lugar). Bora voltar pro início?"
+    },
+    "pages": [
+        {
+            "slug": "home",
+            "title": "Home",
+            "status": "publish",
+            "menu_order": 0,
+            "fields": {
+                "field_am_hero_command": "whoami",
+                "field_am_hero_title": "appMaster",
+                "field_am_hero_subtitle": "gerado por ia, feito por gente",
+                "field_am_hero_text": "Um laboratório sem fins lucrativos onde a inteligência artificial ajuda a escrever o código e gente de verdade decide o que construir, testa e cuida de cada detalhe. Os projetos são de código livre e funcionam direto no navegador, sem instalar nada.",
+                "field_am_hero_badges": "código livre, sem fins lucrativos, sem instalação, aberto a contribuições",
+                "field_am_cta_primary": {
+                    "title": "ver projetos",
+                    "url": "{{site_url}}/portfolio/",
+                    "target": ""
+                },
+                "field_am_cta_secondary": {
+                    "title": "github",
+                    "url": "https://github.com/rafabytes",
+                    "target": "_blank"
+                },
+                "field_am_terminal_enabled": "1",
+                "field_am_terminal_intro": "digite \"help\" pra ver os comandos.",
+                "field_am_projects_command": "ls ~/projetos",
+                "field_am_projects_title": "projetos no ar",
+                "field_am_projects_text": "Cada um roda no próprio endereço e tem o código aberto no GitHub. Dá pra usar agora mesmo — ou abrir o repositório e ajudar a melhorar.",
+                "field_am_projects_link": {
+                    "title": "ver portfolio completo",
+                    "url": "{{site_url}}/portfolio/",
+                    "target": ""
+                },
+                "field_am_about_command": "cat LEIAME.md",
+                "field_am_about_title": "gerado por IA, feito por gente",
+                "field_am_about_text": "A IA acelera: escreve código, sugere caminhos, testa ideias. Mas quem decide o que faz sentido, revisa cada linha e pensa em quem vai usar são pessoas.\n\nPor isso todo projeto do appMaster é de código livre e sem fins lucrativos — e só continua de pé com a ajuda de quem acredita nele. Tem dois jeitos de fazer parte:",
+                "field_am_about_items": [
+                    {
+                        "field_am_about_item_title": "contribua com código",
+                        "field_am_about_item_link": {
+                            "title": "repositórios no github",
+                            "url": "https://github.com/rafabytes",
+                            "target": "_blank"
+                        },
+                        "field_am_about_item_text": "Abra uma issue, sugira uma melhoria ou mande um pull request. Achou um bug ou teve uma ideia? Contar já ajuda muito."
+                    },
+                    {
+                        "field_am_about_item_title": "apoie com financiamento",
+                        "field_am_about_item_link": {
+                            "title": "entrar em contato",
+                            "url": "https://rafabytes.com",
+                            "target": "_blank"
+                        },
+                        "field_am_about_item_text": "Servidores, domínios e horas de manutenção custam. Se você ou sua organização quer apoiar os projetos, fale com a gente."
+                    }
+                ],
+                "field_am_about_link": {
+                    "title": "conhecer o projeto",
+                    "url": "{{site_url}}/sobre/",
+                    "target": ""
+                },
+                "field_am_seo_title": "",
+                "field_am_seo_description": "Gerado por IA, feito por gente: o appMaster cria ferramentas de código livre, sem fins lucrativos, que funcionam direto no navegador. Venha contribuir.",
+                "field_am_seo_image": "",
+                "field_am_seo_noindex": "0"
+            },
+            "template": "",
+            "excerpt": "",
+            "content": ""
+        },
+        {
+            "slug": "portfolio",
+            "title": "Portfolio",
+            "status": "publish",
+            "menu_order": 0,
+            "fields": {
+                "field_am_portfolio_command": "ls -la ~/projetos",
+                "field_am_portfolio_lead": "Ferramentas de código livre geradas por IA e feitas por gente. Todas funcionam direto no navegador, sem instalação — e cada uma tem o código aberto no GitHub esperando novas contribuições.",
+                "field_am_seo_title": "Projetos de código livre — appMaster",
+                "field_am_seo_description": "Conheça amigoSecreto, getAlive e chefMix: ferramentas de código livre geradas por IA e feitas por gente, prontas para usar direto no navegador.",
+                "field_am_seo_image": "",
+                "field_am_seo_noindex": "0"
+            },
+            "template": "page-templates/portfolio.php",
+            "excerpt": "Ferramentas de código livre geradas por IA e feitas por gente: amigoSecreto, getAlive e chefMix, direto no navegador.",
+            "content": ""
+        },
+        {
+            "slug": "sobre",
+            "title": "Sobre o projeto",
+            "status": "publish",
+            "menu_order": 0,
+            "fields": {
+                "field_am_sobre_command": "cat sobre.txt",
+                "field_am_sobre_lead": "gerado por IA, feito por gente. O appMaster é um laboratório sem fins lucrativos que cria ferramentas de código livre com a ajuda da inteligência artificial — e com cuidado humano em cada etapa.",
+                "field_am_items": [
+                    {
+                        "field_am_item_title": "gerado por IA",
+                        "field_am_item_text": "A inteligência artificial acelera a escrita do código, os testes e a documentação."
+                    },
+                    {
+                        "field_am_item_title": "feito por gente",
+                        "field_am_item_text": "Pessoas decidem o que construir, revisam cada linha e pensam em quem vai usar."
+                    },
+                    {
+                        "field_am_item_title": "código livre",
+                        "field_am_item_text": "Todo o código fica aberto no GitHub pra consultar, estudar, adaptar e melhorar."
+                    },
+                    {
+                        "field_am_item_title": "sem fins lucrativos",
+                        "field_am_item_text": "O objetivo é criar ferramentas úteis. Contribuições de código e financiamento mantêm tudo vivo."
+                    }
+                ],
+                "field_am_sobre_cta": {
+                    "title": "ver projetos",
+                    "url": "{{site_url}}/portfolio/",
+                    "target": ""
+                },
+                "field_am_seo_title": "Sobre o appMaster — gerado por IA, feito por gente",
+                "field_am_seo_description": "Laboratório sem fins lucrativos que cria ferramentas de código livre com IA e cuidado humano. Saiba como contribuir com código ou financiamento.",
+                "field_am_seo_image": "",
+                "field_am_seo_noindex": "0"
+            },
+            "template": "page-templates/sobre.php",
+            "excerpt": "Gerado por IA, feito por gente: conheça o laboratório de código livre do appMaster e saiba como contribuir com código ou financiamento.",
+            "content": "A ideia é usar a IA como parceira de criação, não como substituta. Ela acelera a escrita do código, ajuda a testar hipóteses e encurta o caminho entre a ideia e o projeto no ar. As decisões, a revisão e o cuidado com quem vai usar continuam nas mãos de gente.\n\nCada plataforma resolve um problema do dia a dia e roda no próprio endereço em appmaster.com.br. Todas são feitas em WordPress e funcionam direto no navegador, no computador ou no celular — não precisa baixar nem instalar nada.\n\n<h2>como contribuir</h2>\n\nCódigo livre só fica de pé com comunidade. Se você programa, pode abrir issues, sugerir melhorias ou enviar pull requests nos <a href=\"https://github.com/rafabytes\" target=\"_blank\" rel=\"noopener\">repositórios do GitHub</a>. Se você usa, testa ou teve uma ideia, abrir uma issue contando já faz diferença.\n\nOs projetos também precisam de financiamento para cobrir servidores, domínios e o tempo dedicado a manter tudo funcionando. Se você ou sua organização quer apoiar, entre em contato pelo <a href=\"https://rafabytes.com\" target=\"_blank\" rel=\"noopener\">rafabytes.com</a>."
+        }
+    ],
+    "projects": [
+        {
+            "slug": "amigo-secreto",
+            "title": "amigoSecreto",
+            "status": "publish",
+            "menu_order": 1,
+            "fields": {
+                "field_am_url": "https://amigosecreto.appmaster.com.br",
+                "field_am_github": "https://github.com/rafabytes/amigosecreto",
+                "field_am_resumo": "Organize o amigo secreto da família, da galera ou do trabalho sem planilha: crie o grupo, convide as pessoas por e-mail, montem listas de desejos com links e faixa de preço e façam o sorteio com um clique. Cada pessoa vê só quem tirou.",
+                "field_am_tags": "WordPress, PHP",
+                "field_am_status": "online",
+                "field_am_icone": "gift",
+                "field_am_icone_personalizado": ""
+            }
+        },
+        {
+            "slug": "get-a-live",
+            "title": "getAlive",
+            "status": "publish",
+            "menu_order": 2,
+            "fields": {
+                "field_am_url": "https://getalive.appmaster.com.br",
+                "field_am_github": "https://github.com/rafabytes/getalive",
+                "field_am_resumo": "Templates gratuitos de overlay animado pra quem faz live no OBS Studio e na Twitch: cenas de início, jogo, papo, pausa e encerramento, chat, alertas e painéis. Escolha, favorite e baixe direto pelo site.",
+                "field_am_tags": "WordPress, OBS Studio, Twitch",
+                "field_am_status": "online",
+                "field_am_icone": "broadcast",
+                "field_am_icone_personalizado": ""
+            }
+        },
+        {
+            "slug": "chefmix",
+            "title": "chefMix",
+            "status": "publish",
+            "menu_order": 3,
+            "fields": {
+                "field_am_url": "https://chefmix.appmaster.com.br",
+                "field_am_github": "https://github.com/rafabytes/chefmix",
+                "field_am_resumo": "Cozinha guiada passo a passo, sem adivinhação: uma etapa por tela com quantidade, fogo e tempo, mise en place com porções ajustáveis, vários timers ao mesmo tempo e comandos de voz pra cozinhar sem encostar na tela.",
+                "field_am_tags": "WordPress, PHP",
+                "field_am_status": "online",
+                "field_am_icone": "chef",
+                "field_am_icone_personalizado": ""
+            }
+        }
+    ],
+    "menus": {
+        "primary": [
+            {
+                "title": "home",
+                "page": "home"
+            },
+            {
+                "title": "sobre",
+                "page": "sobre"
+            },
+            {
+                "title": "portfolio",
+                "page": "portfolio"
+            }
+        ]
+    }
+}

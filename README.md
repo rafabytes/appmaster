@@ -1,6 +1,6 @@
 # appMaster — tema WordPress
 
-Tema institucional do appMaster (laboratório de IA sem fins lucrativos que publica soluções de código livre).
+Tema institucional do appMaster — *gerado por IA, feito por gente*: laboratório de código livre e sem fins lucrativos.
 Stack: WordPress + Parcel + TailwindCSS + Swup + React.
 
 ## Requisitos
@@ -27,7 +27,7 @@ Os arquivos compilados ficam em `dist/` e **devem ir para o servidor** (node_mod
 | `inc/acf.php` | Página de opções "appMaster" e grupos de campos (registrados em código) |
 | `inc/cpt.php` | Post type **Projetos** (sem página própria, o card leva ao app e ao GitHub) |
 | `inc/login.php` | Tela de login personalizada |
-| `inc/seed.php` | Conteúdo inicial (roda uma vez, quando o ACF está ativo) |
+| `inc/content-sync.php` | Sincronização do conteúdo via `content/site.json` (ver abaixo) |
 | `page-templates/` | Templates **Sobre o projeto** e **Portfolio** |
 | `src/js/components/Terminal.jsx` | Terminal interativo da home (React, carregado sob demanda) |
 | `src/css/` | Tailwind (`main.css`) e login (`login.css`) |
@@ -39,6 +39,19 @@ Os arquivos compilados ficam em `dist/` e **devem ir para o servidor** (node_mod
 - **Páginas → Sobre o projeto / Portfolio**: introdução, texto, lista de destaques e botão.
 - **Projetos**: nome, endereço, GitHub, resumo, tags, status e ícone. A ordem é definida pelo campo "Ordem".
 - **Aparência → Menus**: menu principal e links do rodapé.
+
+## Conteúdo via Git (`content/site.json`)
+
+O conteúdo editável (páginas, campos ACF, projetos, menus, opções do appMaster, título e descrição do site) é versionado em `content/site.json`:
+
+- **Local** (`*.local`, `localhost` ou `WP_ENVIRONMENT_TYPE` local/development): ao salvar qualquer conteúdo no painel, o arquivo é regravado automaticamente. Depois é só commit + push.
+- **Produção**: quando o deploy traz um `site.json` diferente do último importado, o tema importa tudo na próxima requisição (o deploy já chama `wp-cron.php` para isso) e limpa o cache do LiteSpeed. Em instalações novas, o arquivo também cria as páginas, projetos e o menu.
+- URLs do site viram `{{site_url}}` no arquivo, então `appmaster.local` vira `appmaster.com.br` automaticamente.
+- Imagens são referenciadas pelo caminho em `uploads/`; se a mídia não existir no outro ambiente, o campo é mantido como está.
+- Projetos espelham o arquivo (os que não estão nele vão para a lixeira). Páginas que não estão no arquivo não são apagadas.
+- **appMaster → Sincronizar conteúdo** mostra o status e permite exportar/importar manualmente.
+
+> Em produção, edições feitas direto no painel são sobrescritas no próximo deploy com um `site.json` diferente. Edite no ambiente local.
 
 ## SEO
 
@@ -75,17 +88,16 @@ Compatível com a predefinição **Avançado** (`inc/litespeed.php`):
 
 ### Tema (Git do cPanel)
 
-O `.cpanel.yml` copia o tema compilado para `appmaster.com.br/wp-content/themes/appmaster-theme/` (sem `src/`, `node_modules/` e configs) e limpa o cache do LiteSpeed se o WP-CLI existir no servidor.
+O `.cpanel.yml` copia o tema compilado para `appmaster.com.br/wp-content/themes/appmaster-theme/` (sem `src/`, `node_modules/` e configs) chama `wp-cron.php` (importa o `content/site.json` se ele mudou e limpa o cache do LiteSpeed) e, se houver WP-CLI no servidor, limpa o cache também por ele.
 
-1. Local: `npm run build`, commit (incluindo `dist/`) e `git push`
+1. Local: `npm run build` (se mudou CSS/JS), commit (incluindo `dist/` e `content/site.json`) e `git push`
 2. cPanel → **Git Version Control** → appmaster → **Pull or Deploy** → **Update from Remote** → **Deploy HEAD Commit**
 
-### Banco de dados (primeira vez)
+### Primeira vez no servidor
 
-1. Migrar o site (ex.: All-in-One WP Migration). A troca de domínio substitui as URLs gravadas nos campos de link.
-2. Ativar **ACF PRO** e **Classic Editor** e o tema **appMaster**.
-3. Conferir **Configurações → Links permanentes** em `/%postname%/`.
-4. Conferir que **Configurações → Leitura → Visibilidade nos mecanismos de busca** está desmarcado.
-5. Enviar `https://appmaster.com.br/wp-sitemap.xml` no Google Search Console.
+1. Ativar **ACF PRO** e **Classic Editor** e o tema **appMaster** (o conteúdo vem do `content/site.json`).
+2. Conferir **Configurações → Links permanentes** em `/%postname%/`.
+3. Conferir que **Configurações → Leitura → Visibilidade nos mecanismos de busca** está desmarcado.
+4. Enviar `https://appmaster.com.br/wp-sitemap.xml` no Google Search Console.
 
 O site é institucional: o front-end não exibe nenhum link de login (acesso apenas por `/wp-admin`).

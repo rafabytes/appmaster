@@ -397,6 +397,27 @@
     @apply mb-1 text-base;
   }
 
+  .contrib-list {
+    @apply mt-8 grid gap-5 md:grid-cols-2;
+
+    & > li {
+      @apply flex flex-col border border-term-line bg-term-bg/60 p-5;
+    }
+
+    & .btn {
+      @apply px-3 py-1.5 text-xs;
+    }
+  }
+
+  .contrib-list__title {
+    @apply mb-2 text-base text-term-green;
+
+    &::before {
+      content: '+ ';
+      @apply text-term-dim;
+    }
+  }
+
   /* Rodapé ------------------------------------------------------------- */
   .site-footer {
     @apply mt-auto border-t border-term-line;

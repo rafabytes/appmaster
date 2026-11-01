@@ -103,10 +103,31 @@ $am_host     = strtolower( am_brand() );
 
 	<?php $am_about = am_field( 'about_text', $am_id ); ?>
 	<?php if ( $am_about ) : ?>
-		<?php am_window_open( 'sobre.txt', 'section', 'aria-labelledby="sobre-title"' ); ?>
-			<?php am_prompt( am_field( 'about_command', $am_id, 'cat sobre.txt' ) ); ?>
+		<?php
+		$am_about_cmd = am_field( 'about_command', $am_id, 'cat sobre.txt' );
+		$am_about_win = preg_match( '/(\S+)\s*$/', $am_about_cmd, $am_m ) ? $am_m[1] : 'sobre.txt'; // Arquivo do comando (ex.: cat LEIAME.md).
+		?>
+		<?php am_window_open( $am_about_win, 'section', 'aria-labelledby="sobre-title"' ); ?>
+			<?php am_prompt( $am_about_cmd ); ?>
 			<h2 id="sobre-title" class="section-title"><?php echo esc_html( am_field( 'about_title', $am_id, 'sobre' ) ); ?></h2>
 			<div class="prose-term mt-4 max-w-3xl"><?php echo wp_kses_post( $am_about ); ?></div>
+
+			<?php $am_about_items = am_field( 'about_items', $am_id, array() ); ?>
+			<?php if ( $am_about_items ) : ?>
+				<ul class="contrib-list">
+					<?php foreach ( $am_about_items as $am_item ) : ?>
+						<li>
+							<h3 class="contrib-list__title"><?php echo esc_html( $am_item['about_item_title'] ); ?></h3>
+							<?php if ( $am_item['about_item_text'] ) : ?>
+								<p class="text-term-text"><?php echo wp_kses( $am_item['about_item_text'], array( 'br' => array() ) ); ?></p>
+							<?php endif; ?>
+							<?php if ( ! empty( $am_item['about_item_link']['url'] ) ) : ?>
+								<p class="mt-4"><?php am_link( $am_item['about_item_link'] ); ?></p>
+							<?php endif; ?>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			<?php endif; ?>
 			<?php $am_alink = am_field( 'about_link', $am_id ); ?>
 			<?php if ( $am_alink ) : ?>
 				<p class="mt-6"><?php am_link( $am_alink, 'link-arrow' ); ?></p>

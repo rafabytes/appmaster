@@ -70,7 +70,7 @@ function am_seo_image() {
 	}
 
 	return array(
-		'url'    => APPMASTER_URI . '/assets/img/og-default.png',
+		'url'    => APPMASTER_URI . '/assets/img/og-default.png?v=' . filemtime( APPMASTER_DIR . '/assets/img/og-default.png' ),
 		'width'  => 1200,
 		'height' => 630,
 		'alt'    => am_brand() . ' — ' . get_bloginfo( 'description' ),

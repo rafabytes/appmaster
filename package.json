@@ -2,7 +2,7 @@
   "name": "appmaster-theme",
   "version": "1.0.0",
   "private": true,
-  "description": "Tema WordPress do appMaster — hub de plataformas de código livre.",
+  "description": "Tema WordPress do appMaster — gerado por IA, feito por gente.",
   "author": "rafabytes",
   "license": "GPL-2.0-or-later",
   "source": [
@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "dev": "parcel watch --dist-dir dist --public-url ./ --no-hmr --no-cache",
-    "build": "parcel build --dist-dir dist --public-url ./ --no-source-maps --no-cache",
+    "build": "npm run clean && parcel build --dist-dir dist --public-url ./ --no-source-maps --no-cache",
     "clean": "node -e \"for (const d of ['dist','.parcel-cache']) require('fs').rmSync(d,{recursive:true,force:true})\""
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",

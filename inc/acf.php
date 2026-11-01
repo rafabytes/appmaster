@@ -150,6 +150,20 @@ add_action(
 					am_acf( 'about_command', 'Comando do prompt', 'text', array( 'default_value' => 'cat sobre.txt' ) ),
 					am_acf( 'about_title', 'Título', 'text' ),
 					am_acf( 'about_text', 'Texto', 'textarea', array( 'rows' => 4, 'new_lines' => 'wpautop' ) ),
+					am_acf(
+						'about_items',
+						'Formas de contribuir',
+						'repeater',
+						array(
+							'layout'       => 'block',
+							'button_label' => 'Adicionar item',
+							'sub_fields'   => array(
+								am_acf( 'about_item_title', 'Título', 'text', array( 'wrapper' => array( 'width' => 50 ) ) ),
+								am_acf( 'about_item_link', 'Link', 'link', array( 'return_format' => 'array', 'wrapper' => array( 'width' => 50 ) ) ),
+								am_acf( 'about_item_text', 'Texto', 'textarea', array( 'rows' => 2, 'new_lines' => 'br' ) ),
+							),
+						)
+					),
 					am_acf( 'about_link', 'Link', 'link', array( 'return_format' => 'array' ) ),
 				),
 			)

@@ -19,5 +19,8 @@ deployment:
     - /bin/chmod 755 $DEPLOYPATH
     - /usr/bin/find $DEPLOYPATH -type d -exec /bin/chmod 755 {} +
     - /usr/bin/find $DEPLOYPATH -type f -exec /bin/chmod 644 {} +
-    # Limpa o cache do LiteSpeed se o WP-CLI estiver disponível (não falha o deploy se não estiver).
+    # Carrega o WordPress fora do cache (wp-cron.php): se content/site.json mudou, o tema
+    # importa o conteúdo novo e limpa o cache do LiteSpeed.
+    - /bin/bash -c "/usr/bin/curl -s -o /dev/null --max-time 60 'https://appmaster.com.br/wp-cron.php?doing_wp_cron' || true"
+    # Limpa o cache do LiteSpeed também via WP-CLI, se disponível (não falha o deploy se não estiver).
     - /bin/bash -c "command -v wp >/dev/null 2>&1 && wp --path=$WPPATH litespeed-purge all >/dev/null 2>&1 || true"
