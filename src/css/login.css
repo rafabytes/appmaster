@@ -1,0 +1,206 @@
+/* Tela de login (wp-login.php) — compilado para dist/login.css */
+@import 'npm:@fontsource/jetbrains-mono/latin-400.css';
+@import 'npm:@fontsource/jetbrains-mono/latin-700.css';
+
+body.am-login {
+  --am-bg: #0a0c0b;
+  --am-panel: #0f1311;
+  --am-line: #1f2a24;
+  --am-dim: #6b7a71;
+  --am-text: #c9d4cc;
+  --am-bright: #eef5f0;
+  --am-green: #5ff08d;
+  --am-amber: #ffb347;
+  --am-red: #ff6b6b;
+  --am-font: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  background: var(--am-bg);
+  color: var(--am-text);
+  font-family: var(--am-font);
+}
+
+body.am-login::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(to bottom, rgb(0 0 0 / 0) 0, rgb(0 0 0 / 0) 2px, rgb(0 0 0 / 0.18) 3px),
+    radial-gradient(ellipse at center, rgb(0 0 0 / 0) 60%, rgb(0 0 0 / 0.5) 100%);
+}
+
+.am-login #login {
+  width: min(380px, calc(100% - 2.5rem));
+  padding-top: 8vh;
+}
+
+/* Logo em texto */
+.am-login h1 a {
+  background: none;
+  width: auto;
+  height: auto;
+  margin: 0 0 1.5rem;
+  text-indent: 0;
+  font: 700 1.5rem/1.2 var(--am-font);
+  color: var(--am-bright);
+  text-align: left;
+  text-shadow: 0 0 12px rgb(95 240 141 / 0.25);
+}
+
+.am-login h1 a::before {
+  content: '>_ ';
+  color: var(--am-green);
+}
+
+.am-login h1 a:focus {
+  box-shadow: none;
+  outline: 2px solid var(--am-amber);
+  outline-offset: 4px;
+}
+
+/* Bloco de introdução */
+.am-login-intro {
+  margin-bottom: 1rem;
+  font-size: 13px;
+}
+
+.am-login-intro p {
+  margin: 0 0 0.35rem;
+}
+
+.am-login-intro__cmd {
+  color: var(--am-bright);
+}
+
+.am-login-intro__cmd span {
+  color: var(--am-green);
+}
+
+.am-login-intro__title {
+  color: var(--am-amber);
+}
+
+.am-login-intro__text {
+  color: var(--am-dim);
+}
+
+/* Formulário */
+.am-login form {
+  background: var(--am-panel);
+  border: 1px solid var(--am-line);
+  border-radius: 0;
+  box-shadow: 0 20px 60px -20px rgb(0 0 0 / 0.8);
+  padding: 24px;
+  margin-top: 0;
+}
+
+.am-login label {
+  color: var(--am-text);
+  font-size: 13px;
+}
+
+.am-login input[type='text'],
+.am-login input[type='password'],
+.am-login input[type='email'] {
+  background: var(--am-bg);
+  border: 1px solid var(--am-line);
+  border-radius: 0;
+  color: var(--am-bright);
+  font-family: var(--am-font);
+  font-size: 16px;
+  box-shadow: none;
+  caret-color: var(--am-green);
+}
+
+.am-login input[type='text']:focus,
+.am-login input[type='password']:focus,
+.am-login input[type='email']:focus {
+  border-color: var(--am-green);
+  box-shadow: 0 0 0 1px var(--am-green);
+}
+
+.am-login input[type='checkbox'] {
+  background: var(--am-bg);
+  border-color: var(--am-dim);
+  border-radius: 0;
+}
+
+.am-login input[type='checkbox']:checked::before {
+  filter: hue-rotate(-60deg) saturate(3);
+}
+
+.am-login .button.wp-hide-pw {
+  color: var(--am-dim);
+}
+
+.am-login .button.wp-hide-pw:focus {
+  border-color: var(--am-amber);
+  box-shadow: none;
+}
+
+.am-login .button-primary {
+  background: rgb(95 240 141 / 0.1);
+  border: 1px solid var(--am-green);
+  border-radius: 0;
+  color: var(--am-green);
+  font-family: var(--am-font);
+  text-shadow: none;
+  box-shadow: none;
+  padding: 0 14px;
+}
+
+.am-login .button-primary:hover,
+.am-login .button-primary:focus {
+  background: var(--am-green);
+  border-color: var(--am-green);
+  color: var(--am-bg);
+  box-shadow: none;
+}
+
+.am-login .button-primary:focus {
+  outline: 2px solid var(--am-amber);
+  outline-offset: 2px;
+}
+
+/* Mensagens */
+.am-login .message,
+.am-login .notice,
+.am-login #login_error {
+  background: var(--am-panel);
+  border: 1px solid var(--am-line);
+  border-left: 3px solid var(--am-green);
+  box-shadow: none;
+  color: var(--am-text);
+}
+
+.am-login #login_error,
+.am-login .notice-error {
+  border-left-color: var(--am-red);
+}
+
+/* Links abaixo do formulário */
+.am-login #nav,
+.am-login #backtoblog,
+.am-login .privacy-policy-page-link {
+  padding: 0;
+  font-size: 12px;
+}
+
+.am-login #nav a,
+.am-login #backtoblog a,
+.am-login .privacy-policy-page-link a {
+  color: var(--am-dim);
+  text-decoration: none;
+}
+
+.am-login #nav a:hover,
+.am-login #backtoblog a:hover,
+.am-login .privacy-policy-page-link a:hover {
+  color: var(--am-green);
+}
+
+.am-login a:focus {
+  box-shadow: none;
+  outline: 2px solid var(--am-amber);
+  outline-offset: 2px;
+}

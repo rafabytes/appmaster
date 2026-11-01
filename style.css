@@ -1,0 +1,15 @@
+/*
+Theme Name: appMaster
+Theme URI: https://appmaster.com.br
+Author: rafabytes
+Author URI: https://rafabytes.com
+Description: Tema institucional do appMaster — laboratório de IA sem fins lucrativos que publica soluções de código livre feitas com IA. Visual de terminal retrofuturista. Stack: WordPress, Parcel, TailwindCSS, Swup e React. Requer o plugin Advanced Custom Fields PRO.
+Version: 1.0.0
+Requires at least: 6.4
+Requires PHP: 8.0
+License: GPL-2.0-or-later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: appmaster
+*/
+
+/* Os estilos ficam em src/css e são compilados para dist/ (npm run build). */

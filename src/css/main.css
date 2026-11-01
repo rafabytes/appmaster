@@ -1,0 +1,476 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --------------------------------------------------------------------------
+ * Base
+ * ----------------------------------------------------------------------- */
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    @apply bg-term-bg font-mono text-term-text antialiased;
+    font-size: 15px;
+  }
+
+  @screen md {
+    html {
+      font-size: 16px;
+    }
+  }
+
+  body {
+    @apply flex min-h-screen flex-col leading-relaxed;
+  }
+
+  ::selection {
+    @apply bg-term-green text-term-bg;
+  }
+
+  a {
+    @apply text-term-green underline decoration-term-green/40 underline-offset-4 transition-colors;
+  }
+
+  a:hover {
+    @apply decoration-term-green;
+  }
+
+  :focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-term-amber;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-bold text-term-bright;
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * Componentes
+ * ----------------------------------------------------------------------- */
+@layer components {
+  .container {
+    @apply mx-auto w-full max-w-term px-5 md:px-8;
+  }
+
+  .skip-link {
+    @apply sr-only;
+
+    &:focus {
+      @apply not-sr-only fixed left-4 top-4 z-50 bg-term-green px-4 py-2 text-term-bg no-underline;
+    }
+  }
+
+  /* Efeito CRT: scanlines + vinheta, bem sutil. */
+  .crt {
+    @apply pointer-events-none fixed inset-0 z-40;
+    background:
+      repeating-linear-gradient(to bottom, rgb(0 0 0 / 0) 0, rgb(0 0 0 / 0) 2px, rgb(0 0 0 / 0.18) 3px),
+      radial-gradient(ellipse at center, rgb(0 0 0 / 0) 60%, rgb(0 0 0 / 0.45) 100%);
+  }
+
+  /* Header -------------------------------------------------------------- */
+  .site-header {
+    @apply sticky top-0 z-30 border-b border-term-line bg-term-bg/90 backdrop-blur;
+  }
+
+  .admin-bar .site-header {
+    top: 32px;
+  }
+
+  @media (max-width: 782px) {
+    .admin-bar .site-header {
+      top: 46px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .admin-bar .site-header {
+      top: 0;
+    }
+  }
+
+  .logo {
+    @apply inline-flex items-center gap-2 font-bold text-term-bright no-underline;
+    text-shadow: 0 0 12px rgb(95 240 141 / 0.25);
+  }
+
+  .nav-toggle {
+    @apply text-sm text-term-green md:hidden;
+
+    & .nav-toggle__close {
+      @apply hidden;
+    }
+
+    &[aria-expanded='true'] .nav-toggle__open {
+      @apply hidden;
+    }
+
+    &[aria-expanded='true'] .nav-toggle__close {
+      @apply inline;
+    }
+  }
+
+  .site-nav {
+    @apply hidden items-center gap-6 md:flex;
+  }
+
+  .nav-open .site-nav {
+    @apply absolute inset-x-0 top-full flex flex-col items-start gap-4 border-b border-term-line bg-term-bg px-5 py-6;
+  }
+
+  .nav-list {
+    @apply flex flex-col gap-4 md:flex-row md:gap-6;
+
+    & a {
+      @apply text-term-text no-underline hover:text-term-green;
+
+      &::before {
+        content: './';
+        @apply text-term-dim;
+      }
+
+      &[aria-current='page'] {
+        @apply text-term-green;
+      }
+    }
+  }
+
+  .nav-github {
+    @apply inline-flex items-center gap-2 border border-term-line px-3 py-1 text-sm text-term-text no-underline hover:border-term-green hover:text-term-green;
+  }
+
+  /* Janela de terminal ------------------------------------------------- */
+  .term-window {
+    @apply border border-term-line bg-term-panel shadow-[0_0_0_1px_rgb(0_0_0/0.4),0_20px_60px_-20px_rgb(0_0_0/0.8)];
+  }
+
+  .term-window__bar {
+    @apply flex items-center gap-4 border-b border-term-line px-4 py-2 text-xs text-term-dim;
+  }
+
+  .term-window__dots {
+    @apply flex gap-1.5;
+
+    & i {
+      @apply block h-2.5 w-2.5 rounded-full border border-term-dim/60;
+    }
+  }
+
+  .term-window__title {
+    @apply flex-1 truncate text-center;
+    margin-right: 3.25rem; /* compensa os pontos para centralizar */
+  }
+
+  .term-window__body {
+    @apply p-5 md:p-10;
+  }
+
+  /* Prompt ------------------------------------------------------------- */
+  .prompt {
+    @apply mb-3 flex flex-wrap items-baseline gap-x-0 text-sm;
+  }
+
+  .prompt__user {
+    @apply text-term-green;
+  }
+
+  .prompt__path {
+    @apply text-term-amber;
+  }
+
+  .prompt__cmd {
+    @apply ml-2 text-term-bright;
+  }
+
+  .cursor {
+    @apply ml-1 inline-block h-[0.9em] w-[0.5em] translate-y-[0.1em] bg-term-green;
+    animation: blink 1.1s steps(1) infinite;
+  }
+
+  /* Tipografia --------------------------------------------------------- */
+  .hero-title {
+    @apply text-4xl tracking-tight md:text-6xl;
+    text-shadow: 0 0 24px rgb(95 240 141 / 0.18);
+  }
+
+  .hero-subtitle {
+    @apply mt-3 text-lg text-term-green md:text-xl;
+  }
+
+  .page-title {
+    @apply text-3xl tracking-tight md:text-5xl;
+  }
+
+  .section-title {
+    @apply text-2xl md:text-3xl;
+  }
+
+  .lead {
+    @apply mt-4 max-w-3xl text-lg text-term-text;
+  }
+
+  .prose-term {
+    @apply space-y-4 text-term-text;
+
+    & h2 {
+      @apply mt-8 text-xl;
+    }
+
+    & h3 {
+      @apply mt-6 text-lg;
+    }
+
+    & ul {
+      @apply space-y-1 pl-0;
+
+      & li::before {
+        content: '- ';
+        @apply text-term-green;
+      }
+    }
+
+    & ol {
+      @apply list-decimal space-y-1 pl-6 marker:text-term-green;
+    }
+
+    & blockquote {
+      @apply border-l-2 border-term-green pl-4 text-term-dim;
+    }
+
+    & code {
+      @apply bg-term-line px-1.5 py-0.5 text-sm text-term-bright;
+    }
+
+    & img {
+      @apply h-auto max-w-full border border-term-line;
+    }
+  }
+
+  /* Botões ------------------------------------------------------------- */
+  .btn {
+    @apply inline-flex items-center gap-2 border border-term-line px-4 py-2 text-sm text-term-text no-underline transition-colors;
+
+    &::before {
+      content: '[';
+      @apply text-term-dim;
+    }
+
+    &::after {
+      content: ']';
+      @apply text-term-dim;
+    }
+
+    &:hover {
+      @apply border-term-green text-term-green;
+    }
+  }
+
+  .btn--primary {
+    @apply border-term-green bg-term-green/10 text-term-green;
+
+    &:hover {
+      @apply bg-term-green text-term-bg;
+
+      &::before,
+      &::after {
+        @apply text-term-bg;
+      }
+    }
+  }
+
+  .link-arrow {
+    @apply inline-flex items-center gap-2 no-underline;
+
+    &::before {
+      content: '->';
+      @apply text-term-dim transition-transform;
+    }
+
+    &:hover::before {
+      @apply translate-x-1;
+    }
+  }
+
+  /* Projetos ----------------------------------------------------------- */
+  .project-card {
+    @apply flex flex-col gap-4 border border-term-line bg-term-panel p-5 transition-colors;
+
+    &:hover,
+    &:focus-within {
+      @apply border-term-green/50;
+    }
+  }
+
+  .project-card__icon {
+    @apply flex h-12 w-12 shrink-0 items-center justify-center border border-term-green/40 text-term-green;
+    box-shadow: inset 0 0 18px rgb(95 240 141 / 0.08);
+
+    & img {
+      @apply h-7 w-7 object-contain;
+    }
+  }
+
+  .project-card__title {
+    @apply text-lg leading-tight;
+  }
+
+  .project-card__domain {
+    @apply -mt-1 break-all text-sm text-term-amber;
+
+    &::before {
+      content: '$ ';
+      @apply text-term-dim;
+    }
+  }
+
+  .project-card__summary {
+    @apply flex-1 text-sm text-term-text;
+  }
+
+  .project-card__actions {
+    @apply mt-auto flex flex-wrap gap-2 pt-2;
+
+    & .btn {
+      @apply px-3 py-1.5 text-xs;
+    }
+  }
+
+  .status {
+    @apply inline-flex shrink-0 items-center gap-1.5 text-xs text-term-dim;
+
+    &::before {
+      content: '';
+      @apply h-2 w-2 rounded-full bg-term-dim;
+    }
+  }
+
+  .status--online::before {
+    @apply bg-term-green;
+    box-shadow: 0 0 8px theme('colors.term.green');
+  }
+
+  .status--beta::before,
+  .status--dev::before {
+    @apply bg-term-amber;
+  }
+
+  .status--offline::before {
+    @apply bg-term-red;
+  }
+
+  .badges {
+    @apply mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-term-green;
+
+    & li::before {
+      content: '✓ ';
+      @apply text-term-dim;
+    }
+  }
+
+  .tags {
+    @apply flex flex-wrap gap-2 text-xs;
+
+    & li {
+      @apply border border-term-line px-2 py-0.5 text-term-dim;
+    }
+  }
+
+  /* Sobre -------------------------------------------------------------- */
+  .feature-list {
+    @apply mt-10 grid gap-6 border-t border-term-line pt-8 md:grid-cols-2;
+
+    & li {
+      @apply flex gap-4;
+    }
+  }
+
+  .feature-list__index {
+    @apply text-sm text-term-green;
+  }
+
+  .feature-list__title {
+    @apply mb-1 text-base;
+  }
+
+  /* Rodapé ------------------------------------------------------------- */
+  .site-footer {
+    @apply mt-auto border-t border-term-line;
+  }
+
+  .footer-links {
+    @apply flex flex-wrap gap-x-6 gap-y-2 text-sm;
+
+    & a {
+      @apply text-term-dim no-underline hover:text-term-green;
+    }
+  }
+
+  /* Terminal interativo (React) ---------------------------------------- */
+  .mini-terminal {
+    @apply mt-10 border-t border-dashed border-term-line pt-6 text-sm;
+
+    &:empty,
+    &:has(> script:only-child) {
+      @apply hidden;
+    }
+  }
+
+  .mini-terminal__output {
+    @apply max-h-72 space-y-1 overflow-y-auto pr-2;
+  }
+
+  .mini-terminal__line {
+    @apply whitespace-pre-wrap break-words;
+  }
+
+  .mini-terminal__input {
+    @apply flex items-baseline;
+
+    & input {
+      @apply ml-2 min-w-0 flex-1 border-0 bg-transparent p-0 text-term-bright caret-term-green outline-none placeholder:text-term-dim/40;
+    }
+  }
+
+  /* Paginação padrão do WP -------------------------------------------- */
+  .nav-links {
+    @apply flex gap-3;
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * Transições do Swup
+ * ----------------------------------------------------------------------- */
+html.is-changing .transition-main {
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+html.is-animating .transition-main {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  html.is-animating .transition-main {
+    transform: none;
+  }
+}

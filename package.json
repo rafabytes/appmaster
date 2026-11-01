@@ -1,0 +1,32 @@
+{
+  "name": "appmaster-theme",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tema WordPress do appMaster — hub de plataformas de código livre.",
+  "author": "rafabytes",
+  "license": "GPL-2.0-or-later",
+  "source": [
+    "src/js/main.js",
+    "src/css/login.css"
+  ],
+  "scripts": {
+    "dev": "parcel watch --dist-dir dist --public-url ./ --no-hmr --no-cache",
+    "build": "parcel build --dist-dir dist --public-url ./ --no-source-maps --no-cache",
+    "clean": "node -e \"for (const d of ['dist','.parcel-cache']) require('fs').rmSync(d,{recursive:true,force:true})\""
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "devDependencies": {
+    "parcel": "^2.16.4",
+    "postcss": "^8.5.32",
+    "tailwindcss": "^3.4.19"
+  },
+  "dependencies": {
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@swup/body-class-plugin": "^3.3.0",
+    "@swup/head-plugin": "^2.3.1",
+    "@swup/preload-plugin": "^3.2.12",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "swup": "^4.10.0"
+  }
+}
