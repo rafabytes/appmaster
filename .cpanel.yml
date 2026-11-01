@@ -7,12 +7,17 @@ deployment:
     - export WPPATH=/home3/rafa3782/appmaster.com.br
     - export DEPLOYPATH=$WPPATH/wp-content/themes/appmaster-theme/
     - /bin/mkdir -p $DEPLOYPATH
+    # --chmod: o clone do cPanel costuma ter permissão 700; sem isso o servidor web
+    # não consegue ler o tema e responde 403 para CSS, JS e imagens.
     - >-
-      /usr/bin/rsync -a --delete
+      /usr/bin/rsync -rlt --delete --chmod=D755,F644
       --exclude='.git' --exclude='.gitignore' --exclude='.cpanel.yml'
       --exclude='node_modules' --exclude='.parcel-cache' --exclude='src'
       --exclude='package.json' --exclude='package-lock.json'
       --exclude='tailwind.config.js' --exclude='.postcssrc' --exclude='README.md'
       ./ $DEPLOYPATH
+    - /bin/chmod 755 $DEPLOYPATH
+    - /usr/bin/find $DEPLOYPATH -type d -exec /bin/chmod 755 {} +
+    - /usr/bin/find $DEPLOYPATH -type f -exec /bin/chmod 644 {} +
     # Limpa o cache do LiteSpeed se o WP-CLI estiver disponível (não falha o deploy se não estiver).
     - /bin/bash -c "command -v wp >/dev/null 2>&1 && wp --path=$WPPATH litespeed-purge all >/dev/null 2>&1 || true"
