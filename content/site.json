@@ -10,9 +10,9 @@
         "field_am_prompt_user": "visitante",
         "field_am_github_profile": "https://github.com/rafabytes",
         "field_am_contact_email": "",
-        "field_am_footer_text": "Laboratório de código livre e sem fins lucrativos. Gerado por IA, feito por gente.",
+        "field_am_footer_text": "Gerado por IA, feito por gente.",
         "field_am_footer_credit": {
-            "title": "desenvolvido por @rafabytes",
+            "title": "idealizado por @rafabytes",
             "url": "https://rafabytes.com",
             "target": "_blank"
         },

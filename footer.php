@@ -46,17 +46,17 @@ $am_text   = am_option( 'footer_text' );
 			<?php if ( $am_email ) : ?>
 				<li><a href="<?php echo esc_url( 'mailto:' . antispambot( $am_email ) ); ?>"><?php echo esc_html( antispambot( $am_email ) ); ?></a></li>
 			<?php endif; ?>
-			<?php if ( ! empty( $am_credit['url'] ) ) : ?>
-				<li>
-					<a href="<?php echo esc_url( $am_credit['url'] ); ?>"<?php echo $am_credit['target'] ? ' target="_blank" rel="noopener"' : ''; ?>>
-						<?php echo esc_html( $am_credit['title'] ? $am_credit['title'] : am_domain( $am_credit['url'] ) ); ?>
-					</a>
-				</li>
-			<?php endif; ?>
 		</ul>
 	</div>
-	<div class="container border-t border-term-line py-4 text-xs text-term-dim">
-		<span aria-hidden="true">$ echo</span> &copy; <?php echo esc_html( wp_date( 'Y' ) . ' ' . am_brand() ); ?>
+	<div class="container flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-t border-term-line py-4 text-xs text-term-dim">
+		<p><span aria-hidden="true">$ echo</span> &copy; <?php echo esc_html( wp_date( 'Y' ) . ' ' . am_brand() ); ?></p>
+		<?php if ( ! empty( $am_credit['url'] ) ) : ?>
+			<p>
+				<a class="text-term-dim no-underline hover:text-term-green" href="<?php echo esc_url( $am_credit['url'] ); ?>"<?php echo $am_credit['target'] ? ' target="_blank" rel="noopener"' : ''; ?>>
+					<?php echo esc_html( $am_credit['title'] ? $am_credit['title'] : am_domain( $am_credit['url'] ) ); ?>
+				</a>
+			</p>
+		<?php endif; ?>
 	</div>
 </footer>
 
