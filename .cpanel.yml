@@ -1,0 +1,18 @@
+---
+# Deploy pelo cPanel (Git Version Control → Pull or Deploy → Deploy HEAD Commit).
+# Copia o tema já compilado (dist/) para a pasta de temas do WordPress.
+# Arquivos de desenvolvimento (src, node_modules, configs) não vão para o servidor.
+deployment:
+  tasks:
+    - export WPPATH=/home3/rafa3782/appmaster.com.br
+    - export DEPLOYPATH=$WPPATH/wp-content/themes/appmaster-theme/
+    - /bin/mkdir -p $DEPLOYPATH
+    - >-
+      /usr/bin/rsync -a --delete
+      --exclude='.git' --exclude='.gitignore' --exclude='.cpanel.yml'
+      --exclude='node_modules' --exclude='.parcel-cache' --exclude='src'
+      --exclude='package.json' --exclude='package-lock.json'
+      --exclude='tailwind.config.js' --exclude='.postcssrc' --exclude='README.md'
+      ./ $DEPLOYPATH
+    # Limpa o cache do LiteSpeed se o WP-CLI estiver disponível (não falha o deploy se não estiver).
+    - /bin/bash -c "command -v wp >/dev/null 2>&1 && wp --path=$WPPATH litespeed-purge all >/dev/null 2>&1 || true"

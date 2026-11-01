@@ -66,7 +66,7 @@ function am_seed() {
 		'field_am_footer_credit'    => am_seed_link( 'desenvolvido por rafabytes', 'https://rafabytes.com', true ),
 		'field_am_login_title'      => 'acesso restrito',
 		'field_am_login_message'    => 'Área administrativa do appMaster.',
-		'field_am_meta_description' => 'O appMaster é um laboratório de IA sem fins lucrativos que publica soluções de código livre feitas com IA: Amigo Secreto, get a live e ChefMix. Plataformas WordPress que funcionam no navegador, sem instalação.',
+		'field_am_meta_description' => 'appMaster: laboratório de IA sem fins lucrativos que publica soluções de código livre feitas com IA, prontas para usar no navegador, sem instalação.',
 		'field_am_notfound_message' => 'O endereço acessado não existe ou foi movido.',
 	);
 	foreach ( $options as $key => $value ) {
@@ -202,6 +202,19 @@ function am_seed() {
 	if ( ! get_option( 'blogdescription' ) ) {
 		update_option( 'blogdescription', 'laboratório de IA · soluções de código livre' );
 	}
+	/*
+	 * SEO das páginas (títulos até ~60 caracteres, descrições até ~160).
+	 */
+	$seo = array(
+		$home_id      => array( '', 'Laboratório de IA sem fins lucrativos que publica soluções de código livre feitas com IA: Amigo Secreto, get a live e ChefMix. Use direto no navegador.' ),
+		$sobre_id     => array( 'Sobre o appMaster — laboratório de IA de código livre', 'Conheça o appMaster, laboratório de IA sem fins lucrativos que cria plataformas WordPress de código livre com IA, prontas para usar no navegador.' ),
+		$portfolio_id => array( 'Portfolio de projetos de código livre — appMaster', 'Projetos do appMaster: Amigo Secreto, get a live e ChefMix. Plataformas de código livre feitas com IA, com link de acesso e repositório no GitHub.' ),
+	);
+	foreach ( $seo as $page_id => list( $title, $description ) ) {
+		update_field( 'field_am_seo_title', $title, $page_id );
+		update_field( 'field_am_seo_description', $description, $page_id );
+	}
+
 	update_option( 'show_on_front', 'page' );
 	update_option( 'page_on_front', $home_id );
 

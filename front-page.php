@@ -74,7 +74,7 @@ $am_host     = strtolower( am_brand() );
 			);
 			?>
 			<div class="mini-terminal" data-react="terminal">
-				<script type="application/json"><?php echo wp_json_encode( $am_terminal, JSON_HEX_TAG | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ); ?></script>
+				<script type="application/json" data-no-optimize="1"><?php echo wp_json_encode( $am_terminal, JSON_HEX_TAG | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ); ?></script>
 			</div>
 		<?php endif; ?>
 	<?php am_window_close(); ?>

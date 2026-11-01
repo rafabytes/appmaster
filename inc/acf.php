@@ -88,10 +88,31 @@ add_action(
 					am_acf( 'login_message', 'Mensagem', 'textarea', array( 'rows' => 2, 'new_lines' => '', 'default_value' => 'Área administrativa do appMaster.' ) ),
 
 					am_acf_tab( 'opt_tab_seo', 'SEO' ),
-					am_acf( 'meta_description', 'Descrição padrão (meta description)', 'textarea', array( 'rows' => 2, 'new_lines' => '', 'instructions' => 'Usada quando a página não tem um resumo próprio. Para páginas, preencha o campo "Resumo".' ) ),
+					am_acf( 'meta_description', 'Descrição padrão (meta description)', 'textarea', array( 'rows' => 2, 'new_lines' => '', 'maxlength' => 300, 'instructions' => 'Usada quando a página não tem descrição própria (caixa "SEO" na edição da página). Ideal: 120 a 160 caracteres.' ) ),
+					am_acf( 'og_image', 'Imagem de compartilhamento padrão', 'image', array( 'return_format' => 'id', 'preview_size' => 'medium', 'mime_types' => 'jpg,jpeg,png,webp', 'instructions' => 'Exibida ao compartilhar links em redes sociais e mensageiros. Tamanho ideal: 1200×630 px. Se vazio, usa a imagem padrão do tema.' ) ),
+					am_acf( 'organization_name', 'Nome da organização (dados estruturados)', 'text', array( 'default_value' => 'appMaster', 'instructions' => 'Usado no schema.org Organization. O ícone do site (Aparência → Personalizar → Identidade do site) é usado como logo.' ) ),
 
 					am_acf_tab( 'opt_tab_404', 'Página 404' ),
 					am_acf( 'notfound_message', 'Mensagem', 'textarea', array( 'rows' => 2, 'new_lines' => '', 'default_value' => 'O endereço acessado não existe ou foi movido.' ) ),
+				),
+			)
+		);
+
+		/*
+		 * SEO por página.
+		 */
+		acf_add_local_field_group(
+			array(
+				'key'        => 'group_am_seo',
+				'title'      => 'SEO',
+				'position'   => 'side',
+				'menu_order' => 99,
+				'location'   => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'page' ) ) ),
+				'fields'     => array(
+					am_acf( 'seo_title', 'Título para buscadores', 'text', array( 'maxlength' => 70, 'instructions' => 'Opcional. Substitui o título da página na aba e no Google.' ) ),
+					am_acf( 'seo_description', 'Descrição', 'textarea', array( 'rows' => 4, 'new_lines' => '', 'maxlength' => 300, 'instructions' => 'Opcional. Ideal: 120 a 160 caracteres. Se vazio, usa o "Resumo" da página ou a descrição padrão.' ) ),
+					am_acf( 'seo_image', 'Imagem de compartilhamento', 'image', array( 'return_format' => 'id', 'preview_size' => 'medium', 'mime_types' => 'jpg,jpeg,png,webp', 'instructions' => 'Opcional. 1200×630 px.' ) ),
+					am_acf( 'seo_noindex', 'Ocultar dos buscadores', 'true_false', array( 'ui' => 1, 'instructions' => 'Adiciona noindex e remove a página do sitemap.' ) ),
 				),
 			)
 		);

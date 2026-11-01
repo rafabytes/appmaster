@@ -29,26 +29,8 @@ add_action(
 );
 
 /*
- * Site institucional: sem comentários, sem pingbacks.
+ * Comentários, pingbacks e demais bloqueios de spam: inc/antispam.php.
  */
-add_filter( 'comments_open', '__return_false', 20 );
-add_filter( 'pings_open', '__return_false', 20 );
-add_filter( 'comments_array', '__return_empty_array', 10 );
-add_filter( 'xmlrpc_methods', fn( $methods ) => array_diff_key( $methods, array( 'pingback.ping' => 1 ) ) );
-
-add_action(
-	'init',
-	function () {
-		foreach ( array( 'post', 'page' ) as $type ) {
-			remove_post_type_support( $type, 'comments' );
-			remove_post_type_support( $type, 'trackbacks' );
-		}
-	},
-	100
-);
-
-add_action( 'admin_menu', fn() => remove_menu_page( 'edit-comments.php' ) );
-add_action( 'wp_before_admin_bar_render', fn() => $GLOBALS['wp_admin_bar']->remove_menu( 'comments' ) );
 
 /*
  * Cabeçalho mais enxuto.
@@ -58,6 +40,9 @@ remove_action( 'wp_print_styles', 'print_emoji_styles' );
 remove_action( 'wp_head', 'wp_generator' );
 remove_action( 'wp_head', 'wlwmanifest_link' );
 remove_action( 'wp_head', 'rsd_link' );
+remove_action( 'wp_head', 'wp_shortlink_wp_head' );
+remove_action( 'wp_head', 'feed_links', 2 ); // Site sem blog: sem feeds no <head>.
+remove_action( 'wp_head', 'feed_links_extra', 3 );
 
 /*
  * Remove estilos de blocos no front-end: o tema usa o editor clássico e Tailwind.
@@ -70,27 +55,6 @@ add_action(
 		}
 	},
 	100
-);
-
-/*
- * Meta description: resumo da página ou descrição padrão das opções.
- */
-add_action(
-	'wp_head',
-	function () {
-		$description = '';
-		if ( is_singular() && has_excerpt() ) {
-			$description = get_the_excerpt();
-		}
-		if ( ! $description ) {
-			$description = am_option( 'meta_description', get_bloginfo( 'description' ) );
-		}
-		if ( $description ) {
-			printf( '<meta name="description" content="%s">' . "\n", esc_attr( wp_strip_all_tags( $description ) ) );
-		}
-		echo '<meta name="theme-color" content="#0a0c0b">' . "\n";
-	},
-	1
 );
 
 /*
